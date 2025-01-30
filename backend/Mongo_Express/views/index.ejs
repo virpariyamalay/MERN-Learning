@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whatsapp chats</title>
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+    <!-- <h1>
+     
+    </h1> -->
+    <h1>ALL CHATS ARE HERE</h1>
+    <form method="get" action="/chats/new">
+        <button> Add New Chat</button>
+    </form>
+    <div id="allchats">
+        <% for(var i=0;i<chats.length;i++) { %>
+
+            <p>ID:-
+                <%= chats[i].id %>
+            </p>
+            <p>FROM:-
+                <%= chats[i].from %>
+            </p>
+            <p>TO:-
+                <%= chats[i].to %>
+            </p>
+            <p>MESSAGE:-
+                <%= chats[i].message %>
+            </p>
+            <p>DATE:-
+                <%= chats[i].date %>
+            </p>
+            <hr color="black">
+            <% } %>
+    </div>
+
+
+
+
+
+</body>
+
+</html>
