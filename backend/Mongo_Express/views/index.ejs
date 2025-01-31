@@ -32,11 +32,20 @@
             <p>MESSAGE:-
                 <%= chats[i].message %>
             </p>
-            <p>DATE:-
-                <%= chats[i].date %>
+            <p>TIME:-
+                <%= chats[i].date.toString().split(" ")[4] %>
             </p>
-            <hr color="black">
-            <% } %>
+            <p>DATE:-
+                <%= chats[i].date.toString().split(" ").slice(0,4).join(" ") %>
+            </p>
+            <form action=" /chats/<%=chats[i].id %>/edit" method="get">
+                    <button>Edit Message</button>
+                    </form>
+                    <form method="post" action="/chats/<%= chats[i]._id %> ?_method=delete">
+                        <button>delete</button>
+                    </form>
+                    <hr color=" black">
+                    <% } %>
     </div>
 
 

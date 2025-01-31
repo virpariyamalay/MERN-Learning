@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form method="post" action="/chats/<%= e_chat._id %> ?_method=PUT">
+        <p>
+            ID:-<%= e_chat._id %>
+        </p>
+        <p>
+            Message is send by <%= e_chat.from %> to <%= e_chat.to %>
+        </p>
+        <input type="text" placeholder="enter new message" name="message">
+        <button>Update</button>
+    </form>
+
+</body>
+
+</html>

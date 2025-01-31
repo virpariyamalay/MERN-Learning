@@ -4,6 +4,7 @@ const port = 8080;
 const mongoose = require('mongoose');
 const path = require('path');
 const Chat = require('./models/chat.js');
+const methodOverride = require('method-override');
 
 // Importing Routes from routes folder 
 app.set("views", path.join(__dirname, "views"));
@@ -11,6 +12,7 @@ app.set("view engine", "ejs");
 console.log(path.join(__dirname, 'public'));  // Add this line
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true })); // Add this line to use req.body
+app.use(methodOverride('_method'));
 
 main()
     .then(() => {
@@ -79,6 +81,33 @@ app.post('/chats', (req, res) => {
 //show route for displaying a particular chat
 app.get('/', (req, res) => {
     res.send('Root Is Working');
+});
+
+//edit route for editing a particular chat
+app.get('/chats/:id/edit', async (req, res) => {
+    let { id } = req.params;
+    let e_chat = await Chat.findById(id);
+    res.render('edit', { e_chat });
+
+});
+
+
+//update route for updating a particular chat
+app.put('/chats/:id', async (req, res) => {
+    let id = req.params.id.trim();// trim is used to remove the white spaces from the string
+    let { message: new_message } = req.body;
+    console.log(new_message);
+    let u_chat = await Chat.findByIdAndUpdate(id, { message: new_message, date: Date.now() }, { runValidators: true, new: true });
+    console.log(u_chat);
+    res.redirect('/chats');
+});
+
+//delete route for deleting a particular chat
+app.delete('/chats/:id', async (req, res) => {
+    let id = req.params.id.trim();
+    let d_chat = await Chat.findByIdAndDelete(id);
+    console.log(d_chat);
+    res.redirect('/chats');
 });
 
 app.listen(port, (req, res) => {
