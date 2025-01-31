@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>showing id_username_email</title>
+</head>
+
+<body>
+    <h1>Showing id, username, email</h1>
+    <hr><br>
+    <hr>
+    <table border="2">
+        <tr>
+            <th>ID</th>
+            <th>USERNAME</th>
+            <th>EMAIL</th>
+        </tr>
+
+        <% for(let i=0; i<data.length; i++){ %>
+            <tr>
+
+                <td>
+                    <%= data[i].id %>
+                </td>
+                <td>
+                    <%= data[i].username %>
+                </td>
+                <td>
+                    <%= data[i].email %>
+                </td>
+
+                <td>
+                    <form method="get" action="/user/<%= data[i].id%>/edit">
+                        <button>edit username</button>
+                    </form>
+                </td>
+            </tr>
+            <% } %>
+
+    </table>
+
+
+
+
+</body>
+
+</html>
